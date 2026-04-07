@@ -14,8 +14,10 @@ const jobRoutes      = require('./routes/jobs');
 const videoRoutes    = require('./routes/videos');
 const userRoutes     = require('./routes/users');
 const webhookRoutes  = require('./routes/webhooks');
+const voiceCloneRoutes = require('./routes/voiceClone');
 
 const app  = express();
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3001;
 
 // ── SECURITY MIDDLEWARE ───────────────────────────────────────
@@ -70,6 +72,7 @@ app.use('/api/jobs',     jobRoutes);
 app.use('/api/videos',   videoRoutes);
 app.use('/api/users',    userRoutes);
 app.use('/webhooks',     webhookRoutes);
+app.use('/api/voice', voiceCloneRoutes);
 
 // ── 404 HANDLER ───────────────────────────────────────────────
 app.use((req, res) => {
